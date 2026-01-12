@@ -1,4 +1,4 @@
-package com.lxp.tag.application.dto;
+package com.lxp.tag.application.port.out.dto;
 
 public record TagResult(
         long tagId,
