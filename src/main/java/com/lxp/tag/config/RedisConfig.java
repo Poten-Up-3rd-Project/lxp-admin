@@ -1,4 +1,4 @@
-package com.lxp.admin.config;
+package com.lxp.tag.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
