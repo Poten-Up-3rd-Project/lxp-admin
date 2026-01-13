@@ -4,3 +4,18 @@ spring:
       host: localhost
       port: 6379
       password: lxppasswordsecretredis
+
+# Actuator (Health Check)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+# ?? ??
+server:
+  port: 8080
