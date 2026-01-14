@@ -72,18 +72,18 @@ public class TagController {
     }
 
     @GetMapping("findByName")
-    ResponseEntity<Long> findByName(
+    ResponseEntity<TagResult> findByName(
             @RequestParam
             @Valid
             @NotNull(message = "id 는 null 일 수 없습니다.")
             String name
     ) {
-        Optional<Long> optional = tagQueryService.findByName(name);
+        Optional<TagResult> optional = tagQueryService.findByName(name);
         if (optional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        Long body = optional.get();
+        TagResult body = optional.get();
         return ResponseEntity.ok(body);
     }
 

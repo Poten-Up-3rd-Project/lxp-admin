@@ -25,8 +25,14 @@ public class TagQueryService {
         return tagCachePort.findById(id);
     }
 
-    public Optional<Long> findByName(String name) {
-        return tagCachePort.findByName(name);
+    public Optional<TagResult> findByName(String name) {
+        Optional<Long> optionalId = tagCachePort.findByName(name);
+
+        if (optionalId.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return findById(optionalId.get());
     }
 
     public List<TagResult> findByIds(Collection<Long> ids) {
