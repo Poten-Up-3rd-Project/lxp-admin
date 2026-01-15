@@ -6,6 +6,7 @@ import com.lxp.tag.infra.web.external.request.FindTagsByIdsRequest;
 import com.lxp.tag.infra.web.external.response.TagResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,11 +57,13 @@ public class TagController {
 
     @GetMapping("/findByIds")
     ResponseEntity<List<TagResponse>> findByIds(
-            @RequestBody
+            @RequestParam
+            @NotNull(message = "id 목록은 null 일 수 없습니다.")
+            @NotEmpty(message = "id 목록은 비어있을 수 없습니다.")
             @Valid
-            FindTagsByIdsRequest request
+            List<Long> ids
     ) {
-        List<TagResult> results = tagQueryService.findByIds(request.ids());
+        List<TagResult> results = tagQueryService.findByIds(ids);
         if (results.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
