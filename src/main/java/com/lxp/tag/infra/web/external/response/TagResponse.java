@@ -3,6 +3,8 @@ package com.lxp.tag.infra.web.external.response;
 import com.lxp.tag.application.port.out.dto.TagResult;
 
 public record TagResponse(
+        String category,
+        String subCategory,
         long tagId,
         String name,
         String state, // ACTIVE, INACTIVE
@@ -15,7 +17,13 @@ public record TagResponse(
         }
 
         return new TagResponse(
-                tagResult.tagId(), tagResult.name(), tagResult.state(), tagResult.color(), tagResult.variant()
+                tagResult.category(),
+                tagResult.subCategory(),
+                tagResult.tagId(),
+                tagResult.name(),
+                tagResult.state(),
+                tagResult.color(),
+                tagResult.variant()
         );
     }
 }

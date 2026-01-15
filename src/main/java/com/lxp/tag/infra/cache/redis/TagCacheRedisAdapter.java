@@ -39,7 +39,6 @@ public class TagCacheRedisAdapter implements TagCachePort {
         Set<String> keys = redisTemplate.keys(TAG_ID_KEY + "*");
 
         if (keys == null || keys.isEmpty()) {
-            // 현재 여기 걸림
             return List.of();
         }
 
